@@ -1,6 +1,6 @@
-@extends('guest.layouts.app')
+@extends('layouts.app')
 
-@section('title', 'Create New Ticket')
+@section('title', 'New Ticket')
 
 @section('content')
     <div class="row justify-content-center">
