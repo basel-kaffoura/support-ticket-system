@@ -1,16 +1,17 @@
 <!doctype html>
 <html lang="en">
 
-@include('guest.layouts.head')
+@include('guest.partials.head')
 
 <body>
 
-@include('guest.layouts.header')
+@include('guest.partials.header')
 
 @yield('content')
 
-@include('guest.layouts.footer')
+@include('guest.partials.footer')
 
-@include('guest.layouts.scripts')
+@include('guest.partials.scripts')
+
 </body>
 </html>
