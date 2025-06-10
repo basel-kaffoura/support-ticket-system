@@ -7,7 +7,11 @@
 
 @include('guest.partials.header')
 
-@yield('content')
+<div class="container-fluid px-0 mt-5 mb-5">
+    <div class="row g-0 mx-0">
+        @yield('content')
+    </div>
+</div>
 
 @include('guest.partials.footer')
 

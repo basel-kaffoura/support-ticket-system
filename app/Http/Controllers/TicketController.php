@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TicketRequest;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -10,7 +11,8 @@ class TicketController extends Controller
         return view('guest.tickets.create');
     }
 
-    public function store(Request $request) {
-
+    public function store(TicketRequest $request) {
+        $ticketData = $request->validated();
+        dd($ticketData);
     }
 }
