@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class TicketController extends Controller
 {
     public function create() {
-        return view('tickets.create');
+        return view('guest.tickets.create');
     }
 
     public function store(Request $request) {
