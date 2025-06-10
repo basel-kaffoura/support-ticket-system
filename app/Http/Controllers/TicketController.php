@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TicketRequest;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TicketController extends Controller
 {
@@ -13,6 +15,22 @@ class TicketController extends Controller
 
     public function store(TicketRequest $request) {
         $ticketData = $request->validated();
-        dd($ticketData);
+        $connection = $ticketData['ticket_type'];
+
+        /**
+         * We can generate a unique ticket serial number if needed
+         * by using a global ticket counter.
+         * But for now, I used a unique random value for the ticket number
+         */
+        $ticketNumber = 'TKT_'.strtoupper($connection.'_'.Str::random(8));
+
+        $ticket = new Ticket();
+        $ticket->setConnection($connection);
+        $ticket->fill($ticketData);
+        $ticket->ticket_number = $ticketNumber;
+        $ticket->save();
+
+        return redirect()->route('tickets.create')
+            ->with('success', 'The ticket was sent successfully with ID : '.$ticketNumber);
     }
 }
