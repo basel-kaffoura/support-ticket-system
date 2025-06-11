@@ -53,6 +53,15 @@ class AdminController extends Controller
      * Update admin note
      */
     public function updateAdminNote(Request $request, string $connection, string $id) {
+        // Prevent empty trix values: like: <div>&nbsp</div>, spaces, tabs, line breaks
+        $trixText = $request->admin_note;
+        $cleanedText = strip_tags($trixText);
+        $cleanedText = html_entity_decode($cleanedText, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $cleanedText = preg_replace('/[\x20\xA0\t\n\r]+/u', '', $cleanedText);
+        if (empty($cleanedText)) {
+            return back()->withErrors(['admin_note' => 'Please enter your note *'])->withInput();
+        }
+        //
         $request->validate([
             'admin_note' => 'required|string',
         ],[
