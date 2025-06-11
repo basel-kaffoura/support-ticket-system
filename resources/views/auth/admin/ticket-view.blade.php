@@ -82,7 +82,8 @@
                     @if($ticket->admin_note)
                         <div class="mb-3">
                             <strong>Admin Note</strong>
-                            <div class="border rounded p-3 bg-info bg-opacity-10">
+                            <div class="border rounded p-3 bg-info bg-opacity-10"
+                                 style="max-height: 200px; overflow-y: auto; padding-left: 1.25rem;">
                                 {!! $ticket->admin_note !!}
                             </div>
                         </div>
@@ -104,7 +105,8 @@
                                     <div class="mb-3">
                                         <label for="admin_note" class="form-label">Note</label>
                                         <input id="admin_note" type="hidden" name="admin_note">
-                                        <trix-editor input="admin_note" class="form-control"></trix-editor>
+                                        <trix-editor input="admin_note" class="form-control"
+                                                     style="max-height: 200px; overflow-y: auto; padding-left: 1.25rem;"></trix-editor>
                                         @error('admin_note')
                                         <div class="text-danger mt-1 fw-bold">{{ $message }}</div>
                                         @enderror
