@@ -22,5 +22,6 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/tickets/{connection}/{id}', [AdminController::class, 'viewTicket'])->name('ticket.view');
+    Route::post('/tickets/{connection}/{id}/note/update', [AdminController::class, 'updateAdminNote'])->name('ticket.note.update');
     Route::post('logout', [AdminController::class, 'destroy'])->name('logout');
 });

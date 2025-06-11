@@ -48,6 +48,13 @@ class AdminController extends Controller
         $ticket = Ticket::on($connection)->findOrFail($id);
         return view('auth.admin.ticket-view', compact('ticket', 'connection'));
     }
+
+    /**
+     * Update admin note
+     */
+    public function updateAdminNote(string $connection, string $id) {
+        // Note logic will be here
+    }
     /**
      * Destroy an authenticated session.
      */

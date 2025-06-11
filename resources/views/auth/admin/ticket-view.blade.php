@@ -74,11 +74,54 @@
                     </div>
 
                     {{-- Created At --}}
-                    <hr class="my-4">
-                    <div class="text-end text-muted small" style="font-family: monospace;">
-                        Created on {{ $ticket->created_at->timezone('Asia/Dubai')->format('d M Y, H:i A') }}
+                    <hr class="my-0">
+                    <div class="text-end text-muted small mb-2" style="font-family: monospace;">
+                        Created on {{ $ticket->created_at->format('d M Y, H:i A') }}
                     </div>
+                    {{-- Admin Note --}}
+                    @if($ticket->admin_note)
+                        <div class="mb-3">
+                            <strong>Admin Note</strong>
+                            <div class="border rounded p-3 bg-info bg-opacity-10">
+                                {!! $ticket->admin_note !!}
+                            </div>
+                        </div>
+                        <hr class="my-0">
+                        <div class="text-end text-muted small mb-5" style="font-family: monospace;">
+                            Noted on {{ $ticket->updated_at->format('d M Y, H:i A') }}
+                        </div>
+                    @endif
 
+                    {{-- Update Admin Note --}}
+                    <div class="col-md-12 mt-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h6 class="mb-0">Trix Editor</h6>
+                            </div>
+                            <div class="card-body">
+                                <form action="{{ route('ticket.note.update', ['connection' => $connection, 'id' => $ticket->id])  }}" method="POST">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="admin_note" class="form-label">Note</label>
+                                        <input id="admin_note" type="hidden" name="admin_note">
+                                        <trix-editor input="admin_note" class="form-control"></trix-editor>
+                                    </div>
+
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary">
+                                            Save Note
+                                        </button>
+                                    </div>
+
+                                    <div class="mt-2">
+                                        <small class="text-muted">
+                                            The ticket status will change to "NOTED" after saving if the note is not empty.
+                                        </small>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
