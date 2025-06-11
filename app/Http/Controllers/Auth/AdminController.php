@@ -42,6 +42,13 @@ class AdminController extends Controller
     }
 
     /**
+     * View one ticket by admin
+     */
+    public function viewTicket(string $connection, string $id) {
+        $ticket = Ticket::on($connection)->findOrFail($id);
+        return view('auth.admin.ticket-view', compact('ticket', 'connection'));
+    }
+    /**
      * Destroy an authenticated session.
      */
     public function destroy(Request $request): RedirectResponse {

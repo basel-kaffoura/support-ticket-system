@@ -21,5 +21,6 @@ Route::middleware('guest')->group(function () {
 // Admin routes
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/tickets/{connection}/{id}', [AdminController::class, 'viewTicket'])->name('ticket.view');
     Route::post('logout', [AdminController::class, 'destroy'])->name('logout');
 });

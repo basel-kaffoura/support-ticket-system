@@ -24,7 +24,7 @@
                             <th>Ticket ID</th>
                             <th>Full Name</th>
                             <th>Email</th>
-                            <th>Type</th>
+                            <th>Ticket Type</th>
                             <th>Subject</th>
                             <th>Description</th>
                             <th>Status</th>
@@ -95,7 +95,7 @@
                                 {{--Ticket Status--}}
                                 <td>
                                 <span class="badge bg-{{ $ticket->status == 'noted' ? 'success' : 'warning' }}">
-                                    {{ $ticket->status }}
+                                    {{ $ticket->status == 'noted' ? 'NOTED' : 'OPEN' }}
                                 </span>
                                 </td>
 
@@ -108,7 +108,12 @@
 
                                 {{--View Ticket--}}
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-danger border shadow-sm" title="View Ticket">
+                                    <a href="{{ route('ticket.view',
+                                                        [
+                                                            'connection' => $ticket->ticket_type,
+                                                            'id' => $ticket->id
+                                                        ]) }}"
+                                       class="btn btn-sm btn-danger border shadow-sm" title="View Ticket">
                                         <i class="bi bi-eye"></i>
                                     </a>
                                 </td>
@@ -117,13 +122,16 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- Pagination Links -->
+
+                {{--Pagination Links--}}
                 <div class="d-flex justify-content-between align-items-center mt-4">
                     <div>
                         {{ $tickets->appends(request()->query())->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
+
             @else
+                {{--No Tickets Found--}}
                 <div class="text-center py-5">
                     <div class="fs-1 text-muted">📭</div>
                     <h5 class="mt-3">No Tickets Found</h5>
