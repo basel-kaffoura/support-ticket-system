@@ -33,6 +33,23 @@
                     </thead>
                     <tbody>
                     {{--Show all tickets--}}
+                    @foreach($tickets as $ticket)
+                        <tr>
+                            <td>{{ $ticket->ticket_number }}</td>
+                            <td>{{ $ticket->name }}</td>
+                            <td>{{ $ticket->email }}</td>
+                            <td>{{ $ticket->ticker_type }}</td>
+                            <td>{{ $ticket->subject }}</td>
+                            <td>{{ $ticket->message }}</td>
+                            <td>{{ $ticket->status }}</td>
+                            <td>{{ $ticket->created_at->format('Y-m-d H:i') }}</td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-primary">
+                                    View
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
