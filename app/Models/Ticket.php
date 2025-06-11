@@ -15,4 +15,19 @@ class Ticket extends Model
         'description',
         'status',
     ];
+
+    /**
+     * Get all tickets from the different databases
+     */
+    public static function getAllTickets() {
+        $allTickets = collect();
+        $connections = ['technical', 'billing', 'product', 'general', 'feedback'];
+
+        foreach ($connections as $connection) {
+            $tickets = self::on($connection)->get();
+            $allTickets = $allTickets->merge($tickets);
+        }
+
+        return $allTickets->sortByDesc('created_at');
+    }
 }

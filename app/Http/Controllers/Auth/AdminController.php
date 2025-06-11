@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Ticket;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,7 @@ class AdminController extends Controller
      */
     public function dashboard() {
         // Get all tickets from the different databases
-        $tickets = []; // Logic will be here
+        $tickets = Ticket::getAllTickets();
         return view('auth.admin.dashboard', compact('tickets'));
     }
 

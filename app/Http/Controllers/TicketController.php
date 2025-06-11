@@ -22,7 +22,7 @@ class TicketController extends Controller
          * by using a global ticket counter.
          * But for now, I used a unique random value for the ticket number
          */
-        $ticketNumber = 'TKT_'.strtoupper($connection.'_'.Str::random(8));
+        $ticketNumber = 'TKT_'.strtoupper(substr($connection, 0, 4).'_'.Str::random(8));
 
         $ticket = new Ticket();
         $ticket->setConnection($connection);
