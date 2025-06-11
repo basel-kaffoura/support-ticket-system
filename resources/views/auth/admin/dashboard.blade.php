@@ -3,17 +3,14 @@
 @section('title', 'Admin Panel')
 
 @section('content')
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 mx-5">
         <h2>Admin Panel</h2>
-        <form action="{{ route('logout') }}" method="POST" class="d-inline">
-            @csrf
-            <button type="submit" class="btn btn-outline-danger">Logout</button>
-        </form>
+        <a href="{{ route('tickets.create') }}" class="btn btn-primary">Add New</a>
     </div>
 
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">Tickets</h5>
+            <h5 class="mb-0">Ticket List</h5>
         </div>
         <div class="card-body">
             @if($tickets->isNotEmpty())
@@ -139,6 +136,13 @@
             @endif
         </div>
     </div>
+
+    <div class="mt-5">
+        <small class="text-muted bg-warning p-1 rounded d-block text-center mx-auto" style="max-width: 30%;">
+            Add more than 5 tickets to see the pagination
+        </small>
+    </div>
+
 @endsection
 
 

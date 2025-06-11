@@ -19,7 +19,7 @@ class Ticket extends Model
     ];
 
     /**
-     * Get all tickets from the different databases
+     * Apply custom pagination when getting tickets from the different databases
      */
     public static function getPaginatedTickets($page = 1, $perPage = 5) {
         $allTickets = collect();
