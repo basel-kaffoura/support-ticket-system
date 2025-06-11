@@ -9,7 +9,7 @@
 
 <div class="container-fluid px-0 mt-5 mb-5">
     <div class="row g-0 mx-0">
-        <div class="container mt-4">
+        <div class="container">
 
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
