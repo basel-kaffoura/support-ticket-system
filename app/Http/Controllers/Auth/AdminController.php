@@ -33,9 +33,11 @@ class AdminController extends Controller
     /**
      * Show all tickets in the admin panel
      */
-    public function dashboard() {
+    public function dashboard(Request $request) {
+        $perPage = $request->get('per_page', 5);
+        $page = $request->get('page', 1);
         // Get all tickets from the different databases
-        $tickets = Ticket::getAllTickets();
+        $tickets = Ticket::getPaginatedTickets($page, $perPage);
         return view('auth.admin.dashboard', compact('tickets'));
     }
 
