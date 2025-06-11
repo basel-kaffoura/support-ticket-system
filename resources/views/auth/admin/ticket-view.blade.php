@@ -104,7 +104,7 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label for="admin_note" class="form-label">Note</label>
-                                        <input id="admin_note" type="hidden" name="admin_note">
+                                        <input id="admin_note" type="hidden" name="admin_note" value="{{ old('admin_note', $ticket->admin_note ?? '') }}">
                                         <trix-editor input="admin_note" class="form-control"
                                                      style="max-height: 200px; overflow-y: auto; padding-left: 1.25rem;"></trix-editor>
                                         @error('admin_note')
@@ -119,11 +119,11 @@
                                     </div>
 
                                     @if($ticket->status === 'open')
-                                    <div class="mt-2">
-                                        <small class="text-muted bg-warning p-1 rounded">
-                                            The ticket status will change from "OPEN" to "NOTED" after saving.
-                                        </small>
-                                    </div>
+                                        <div class="mt-2">
+                                            <small class="text-muted bg-warning p-1 rounded d-block text-center mx-auto" style="max-width: 100%;">
+                                                The ticket status will change from <b>"OPEN"</b> to <b>"NOTED"</b> after saving.
+                                            </small>
+                                        </div>
                                     @endif
                                 </form>
                             </div>
