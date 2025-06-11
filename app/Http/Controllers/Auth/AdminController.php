@@ -52,8 +52,19 @@ class AdminController extends Controller
     /**
      * Update admin note
      */
-    public function updateAdminNote(string $connection, string $id) {
-        // Note logic will be here
+    public function updateAdminNote(Request $request, string $connection, string $id) {
+        $request->validate([
+            'admin_note' => 'required|string',
+        ],[
+            'admin_note.required' => 'Please enter your note *',
+        ]);
+        $ticket = Ticket::on($connection)->findOrFail($id);
+        $ticket->admin_note = $request->admin_note;
+        $ticket->status = 'noted';
+        $ticket->save();
+
+        return redirect()->route('dashboard')
+            ->with('success', 'Note was updated successfully');
     }
     /**
      * Destroy an authenticated session.

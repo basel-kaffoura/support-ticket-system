@@ -105,19 +105,24 @@
                                         <label for="admin_note" class="form-label">Note</label>
                                         <input id="admin_note" type="hidden" name="admin_note">
                                         <trix-editor input="admin_note" class="form-control"></trix-editor>
+                                        @error('admin_note')
+                                        <div class="text-danger mt-1 fw-bold">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary fw-bold">
                                             Save Note
                                         </button>
                                     </div>
 
+                                    @if($ticket->status === 'open')
                                     <div class="mt-2">
-                                        <small class="text-muted">
-                                            The ticket status will change to "NOTED" after saving if the note is not empty.
+                                        <small class="text-muted bg-warning p-1 rounded">
+                                            The ticket status will change from "OPEN" to "NOTED" after saving.
                                         </small>
                                     </div>
+                                    @endif
                                 </form>
                             </div>
                         </div>
