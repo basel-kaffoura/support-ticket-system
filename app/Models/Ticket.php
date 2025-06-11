@@ -15,6 +15,7 @@ class Ticket extends Model
         'subject',
         'description',
         'status',
+        'admin_note'
     ];
 
     /**
