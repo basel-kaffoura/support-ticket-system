@@ -35,6 +35,11 @@ Copy .env.example to .env
 cp .env.example .env
 ```
 ____________________________________________________________________
+## Generate application key
+```
+php artisan key:generate
+```
+____________________________________________________________________
 ## Create those six databases in your local
 - `sts_db` : The main database
 - `sts_technical_db` : For technical department
